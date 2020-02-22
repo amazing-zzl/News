@@ -1,4 +1,4 @@
-# mall
+# News
 
 ## Project setup
 ```
