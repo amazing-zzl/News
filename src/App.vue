@@ -1,29 +1,34 @@
 <template>
   <div id="app">
-    <rooter-view>
-      
-    </rooter-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-
+// import storage from './storage'
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     
-  }
+  },
+  data(){
+    return{
+      //res:{} 
+    }
+  },
+  mounted(){
+    //storage.setItem('b',1,'user')
+    //storage.clear('b','user')
+    //本地集成mockjs实现数据mock
+    //this.axios.get('/user/login').then((res)=>{
+    // this.res = res;
+    //})
+  },
+  
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/scss/reset.scss';
 </style>
