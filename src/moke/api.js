@@ -10,4 +10,4 @@ Mock.mock('/api/user/login',{
     "createTime": 1479048325000,
     "updateTime": 1479048325000
   }
-});
+})

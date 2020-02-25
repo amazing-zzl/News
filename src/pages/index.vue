@@ -69,11 +69,11 @@
             img:'/images/swiper-big-1.jpg'
           },
           {
-            id:'45',
+            id:'',
             img:'/images/swiper-big-2.jpg'
           },
           {
-            id:'46',
+            id:'',
             img:'/images/swiper-big-3.jpg'
           },
           {
@@ -122,11 +122,12 @@
         this.axios.get('/products',{
           params:{
             categoryId:100012,
-            pageSize:14
+            pageSize:6
           }
         }).then((res)=>{
-          res.list = res.list.slice(6,14);
-          this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)];
+          this.phoneList = [res.list.slice(0,3),res.list.slice(3,6)];
+          console.log(this.phoneList[0][0].subtitle);
+          
         })
       }
     }
@@ -177,7 +178,7 @@
               margin-top: 10px;
               margin-left: 60px;
               width:300px;
-              height:85px;
+              height:80px;
               background-color:$colorG;
               text-align:center;
 

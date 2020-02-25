@@ -10,7 +10,7 @@
       <a href="javascript:;" target="_blank">张祖林</a><span>|</span>
       <a href="https://github.com/zhangzulin1234/News" target="_blank">Github项目页</a>
     </div>
-    <div class="copyright">Copyright ©2019 <span class="domain">张祖林</span> All Rights Reserved.</div>
+    <div class="copyright">Copyright ©2020 <span class="domain">张祖林</span> All Rights Reserved.</div>
   </div>
 </template>
 <script>
