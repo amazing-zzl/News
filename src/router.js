@@ -20,7 +20,7 @@ export default new Router({
                 name:'index',
                 component:Index,
             }, {
-                path:'/news/:id',//新闻页
+                path:'news/:id',//新闻页
                 name:'news',
                 component:News,
             }

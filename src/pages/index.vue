@@ -14,25 +14,41 @@
       </div>
     </div>
 
-    
-    <div class="product-box">
-      <div class="container">
-        <h2>通知公告</h2>
-        <div class="wrapper">
-          <div class="list-box">
-            <div class="list" v-for="(arr,i) in menuList" v-bind:key="i">
-              <div class="item" v-for="(item,j) in arr" v-bind:key="j"> 
-                  <a href="" target="_blank" v-bind:id="item.id">
-                    <div class="date"></div>
-                    <div class="content">{{item.title}}</div>
-                  </a>
+    <div v-for="(category,cat) in categoryList" v-bind:key="cat">
+      <div class="product-box">
+        <div class="container">
+          <ul>
+            <div class="categoryTitle">
+              <h2>{{category.categoryName}}</h2>
+              <div class="image">
+                <a href="" target="_blank">
+                  <img alt src="./../../public/images/iconTo.png">
+                </a>
               </div>
             </div>
-          </div>
+            <div class="wrapper">
+              <div class="list-box">
+                <div class="list" v-for="(arr,i) in newsList" v-bind:key="i">
+                  <div v-if="cat===i">
+                    <div class="item" v-for="(item,j) in arr" v-bind:key="j" v-bind:id="item.id"> 
+                      <li>
+                        <a href="/#/news/9" target="_blank">
+                          <div class="date">
+                            <span class="d1">24</span>
+                            <span class="d2">2020-02</span>
+                          </div>
+                          <div class="title">{{item.title}}</div>  
+                        </a>
+                      </li>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ul>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -46,6 +62,7 @@
     },
     data(){
       return {
+        id:1,
         swiperOption:{
           autoplay:true,
           loop:true,
@@ -86,29 +103,36 @@
           }
         ],
 
-        menuList:[
-          [{
-              id:1,
-              title:"我是第一个标题，我是第一个标题，我是第一个标题，我是第一个标题，我是第一个标题，",
-
-            },{
-              id:2,
-              title:"我是第二个哈哈哈哈哈哈哈哈哈哈我是第二个哈哈哈哈哈哈哈哈哈哈我是第二个哈哈哈哈哈哈哈哈哈哈",
-          },{
-              id:3,
-              title:"我是第三个哈哈哈，我是第三个哈哈哈我是第三个哈哈哈我是第三个哈哈哈我是第三个哈哈哈",
-          }],
-
-          [{
-              id:4,
-              title:"我是第四个标题，我是第四个标题我是第四个标题我是第四个标题我是第四个标题我是第四个标题",
-            },{
-              id:5,
-              title:"我是第五个。第五个五个五个五个五个",
-          },{
-              id:6,
-              title:"我是第六个",
-          }],
+         newsList:[],
+        categoryList:[
+          {
+            id:1,
+            categoryName:"新闻标题1",
+            categoryType:1,
+            updateTime:123456,
+            newsInfo:[
+              {
+                updateTime: 1582522662000,
+                id: 1,
+                title: "新闻1",
+                content: "这是第一条新闻",
+                isreview: 1
+              },
+              {
+                updateTime: 1582522662000,
+                id: 1,
+                title: "新闻1",
+                content: "这是第一条新闻",
+                isreview: 1
+              }
+            ]
+          },
+           {
+            id:2,
+            categoryName:"新闻标题2",
+            categoryType:2,
+            updateTime:123456
+          },
         ],
         phoneList:[],
         showModal:false
@@ -119,15 +143,18 @@
     },
     methods:{
       init(){
-        this.axios.get('/products',{
+        this.axios.get('/news_back/user/news/list',{
           params:{
-            categoryId:100012,
-            pageSize:6
+          //  categoryId:100012,
+          //  pageSize:6
           }
         }).then((res)=>{
-          this.phoneList = [res.list.slice(0,3),res.list.slice(3,6)];
-          console.log(this.phoneList[0][0].subtitle);
-          
+          //this.phoneList = [res.list.slice(0,3),res.list.slice(3,6)];
+          this.categoryList = res;
+          for(var i=0;i<res.length;i++){
+            this.newsList.push(res[i].newsInfo)
+          }
+          //console.log(res[0].newsInfo);
         })
       }
     }
@@ -157,6 +184,19 @@
       margin-bottom: 50px;
       background-color:$colorJ;
       padding:30px 50px 50px;    
+      .categoryTitle{
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        .image{
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          text-align: left;
+          border: none;
+          vertical-align: middle;
+        }
+      }
       h2{
         font-size:$fontF;
         height:21px;
@@ -166,41 +206,54 @@
       }
       .wrapper{
         display:flex;
-        .list-box{
-          .list{
-            @include flex();
-            width:986px;
-            margin-bottom:14px;
-            &:last-child{
-              margin-bottom:0;
-            }
-            .item{
-              margin-top: 10px;
-              margin-left: 60px;
-              width:300px;
-              height:80px;
-              background-color:$colorG;
-              text-align:center;
+        .list{
+          @include flex();
+          width:986px;
+          margin-bottom:14px;
+          &:last-child{
+            margin-bottom:0;
+          }
+          .item{
+            margin-top: 16px;
+            margin-left: 20px;
+            float: left;
+            width:300px;
+            height:80px;
+            background-color:$colorG;
+            text-align:center;
 
-              .date{
-                float: left;
-                width: 87px;
-                height: 57px;
-                background: url(/images/icon004.png) no-repeat;
-                margin-left: 3px;
-                margin-top: 10px;
+            .date{
+              float: left;
+              width: 87px;
+              height: 57px;
+              background: url(/images/icon004.png) no-repeat;
+              margin-left: 6px;
+              margin-top: 10px;
+              .d1{
+                font-size: 26px;
+                color: #9d8d61;
+                font-weight: bold;
+                line-height: 36px;
+                margin-left: -10px;
               }
-              .content{
-                margin-top: 18px;
-                font-size: 14px;
-                color: #4c4c4c;
-                overflow: hidden;
-                -webkit-line-clamp: 2;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                text-align:left
+              .d2{
+                display: block;
+                width: 66px;
+                text-align: center;
+                font-family: "Cormorant";
               }
+            }
+            .title{
+              padding-top: 15px;
+              font-size: 15px;
+              font-family: "Microsoft Yahei";
+              color: #4c4c4c;
+              overflow: hidden;
+              -webkit-line-clamp: 2;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              text-align:left
             }
           }
         }
