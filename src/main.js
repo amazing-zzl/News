@@ -5,6 +5,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyLoad from 'vue-lazyload'
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 const mock = false;
 if(mock){
   require('./moke/api')
@@ -28,6 +30,8 @@ axios.interceptors.response.use(function(response){
 Vue.use(VueLazyLoad,{
   loading:'/imgs/loading-svg/loading-bars.svg'
 })
+
+Vue.use(ElementUI);
 
 Vue.use(VueAxios,axios);
 Vue.config.productionTip = false

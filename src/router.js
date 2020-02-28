@@ -2,9 +2,10 @@ import Vue from "vue"
 import Router from "vue-router"
 import Home from "./pages/home"
 import Index from "./pages/index"
-import News from "./pages/news"
+import Details from "./pages/details"
 import Login from "./pages/login"
-
+import NewsList from "./pages/newsList"
+import Demo from "./pages/demo"
 
 Vue.use(Router);
 
@@ -20,9 +21,13 @@ export default new Router({
                 name:'index',
                 component:Index,
             }, {
-                path:'news/:id',//新闻页
-                name:'news',
-                component:News,
+                path:'details/:category/:id',//新闻页
+                name:'details',
+                component:Details,
+            },{
+                path:'newsList/:categoryType/:categoryName',//新闻页
+                name:'newsList',
+                component:NewsList,
             }
         ]
 
@@ -30,7 +35,10 @@ export default new Router({
         path:'/login',
         name:'login',
         component:Login,
-
+    },{
+        path:'/demo',
+        name:'demo',
+        component:Demo,
     }
     ]
 })
