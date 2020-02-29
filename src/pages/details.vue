@@ -21,20 +21,13 @@
                   新闻id：{{news.newsId}}
                 </span>
                 <span>
-                  发布时间：{{news.updateTime/1000}}
+                  发布时间：{{news.updateTime/1000 | formatDate}}
                 </span>
               </p>
             </div>
             <!-- 文章内容start -->
             <div class="article-body" role="article-body">
-              <p>{{news.newsContent}}</p>
-              <p>个瞬间都认真地度日文化生态。</p>
-              <p>个瞬间都认真地度日机插几次就爱几次就擦才刺激就从案件从骄傲草草卡口瓶小卡片上卡西欧怕可擦可擦除看破爱上文化生态。</p>
-              <p>个瞬间都认真地度日文化生态。</p>
-              <p>个瞬间都认真地度日文化生态。</p>
-              <p>个瞬间都认真地度日文化生态。</p>
-              <p>个瞬间都认真地度日文化生态。</p>
-              <p>个瞬间都认真地度日文化生态。</p>
+              <p style="white-space: pre-wrap;">{{news.newsContent}}</p>
             </div>
           </div>
           <!-- 文章内容end -->
@@ -44,7 +37,7 @@
   </div>
 </template>
 <script>
-
+ import {formatDate} from './../util/formatDate'
 export default {
   name: "details",
 
@@ -66,6 +59,14 @@ export default {
         this.news = res;
       });
     }
+  },
+    filters: {
+      formatDate(time) {
+        time = time * 1000
+        let date = new Date(time)
+        console.log(new Date(time))
+        return formatDate(date, 'yyyy-MM-dd hh:mm')
+      }
   }
 };
 </script>

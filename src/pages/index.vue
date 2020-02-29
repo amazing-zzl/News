@@ -36,8 +36,8 @@
                       <li>
                         <a v-bind:href="'/#/details/' + category.categoryName + '/' + item.id" target="_blank">
                           <div class="date">
-                            <span class="d1">24</span>
-                            <span class="d2">2020-02</span>
+                            <span class="d1">News</span>
+                            <span class="d2">新闻</span>
                           </div>
                           <div class="title">{{item.title}}</div>
                         </a>
@@ -203,7 +203,7 @@ export default {
             margin-left: 6px;
             margin-top: 10px;
             .d1 {
-              font-size: 26px;
+              font-size: 18px;
               color: #9d8d61;
               font-weight: bold;
               line-height: 36px;
@@ -211,8 +211,9 @@ export default {
             }
             .d2 {
               display: block;
+              
               width: 66px;
-              text-align: center;
+              color: #FF8C00;
               font-family: "Cormorant";
             }
           }

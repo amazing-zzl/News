@@ -19,7 +19,7 @@
             <a v-bind:href="'/#/details/' + categoryName + '/' + news.newsId" target="_blank" title="点击查看新闻详情">
               <div class="text">
                 <h5>{{news.newsTitle}}</h5>
-                <p>发布时间：{{news.updateTime/1000}}</p>
+                <p>发布时间：{{news.updateTime/1000 | formatDate}}</p>
               </div>
             </a>
           </li>
@@ -29,8 +29,9 @@
           background
           layout="prev, pager, next"
           :pageSize = "pageSize"
-          :total="total"> 
+          :total="total"
           @current-change = "handleChange"
+          > 
         </el-pagination>
       </div>
     </div>
@@ -38,7 +39,7 @@
 </template>
 <script>
 import { Pagination } from 'element-ui'
-
+import {formatDate} from './../util/formatDate'
 export default {
   name: "newsList",
   components:{
@@ -88,10 +89,17 @@ export default {
         });
     },
     handleChange(pageNum){
-      this.pageNum = pageNum+1;
+      this.pageNum = pageNum;
       this.getNewsList();
-
     }
+  },
+  filters: {
+      formatDate(time) {
+        time = time * 1000
+        let date = new Date(time)
+        console.log(new Date(time))
+        return formatDate(date, 'yyyy-MM-dd hh:mm')
+      }
   }
 };
 </script>
