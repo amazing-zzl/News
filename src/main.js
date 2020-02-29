@@ -7,6 +7,7 @@ import VueLazyLoad from 'vue-lazyload'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
 const mock = false;
 if(mock){
   require('./moke/api')

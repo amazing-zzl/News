@@ -16,10 +16,10 @@
           
         <u v-for="(news,i) in newsList" v-bind:key="i">
           <li>
-            <a v-bind:href="'/#/details/' + news.id" target="_blank" title="点击查看新闻详情">
+            <a v-bind:href="'/#/details/' + categoryName + '/' + news.newsId" target="_blank" title="点击查看新闻详情">
               <div class="text">
-                <h5>{{news.title}}</h5>
-                <p>发布时间：{{news.updateTime}}</p>
+                <h5>{{news.newsTitle}}</h5>
+                <p>发布时间：{{news.updateTime/1000}}</p>
               </div>
             </a>
           </li>
@@ -73,15 +73,22 @@ export default {
       let categoryType = this.$route.params.categoryType;
       this.axios
         .get("/news_back/user/newsList?categoryType=" + categoryType,{
-          pageNum:this.pageNum
+          params:{
+            pageNum:this.pageNum
+          }
+          
         })
         .then(res => {
-          this.newsList = res;
+          this.newsList = res.content;
+          this.pageSize=res.size,
+          this.pageNum=res.number+1,
+          this.total=res.totalElements,
+          console.log(res)
           //给total等分页器赋值
         });
     },
     handleChange(pageNum){
-      this.pageNum = pageNum;
+      this.pageNum = pageNum+1;
       this.getNewsList();
 
     }
