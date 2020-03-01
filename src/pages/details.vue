@@ -64,7 +64,7 @@ export default {
       formatDate(time) {
         time = time * 1000
         let date = new Date(time)
-        console.log(new Date(time))
+        //console.log(new Date(time))
         return formatDate(date, 'yyyy-MM-dd hh:mm')
       }
   }

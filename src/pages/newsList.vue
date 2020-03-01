@@ -83,8 +83,8 @@ export default {
           this.newsList = res.content;
           this.pageSize=res.size,
           this.pageNum=res.number+1,
-          this.total=res.totalElements,
-          console.log(res)
+          this.total=res.totalElements
+          //console.log(res)
           //给total等分页器赋值
         });
     },
@@ -97,7 +97,7 @@ export default {
       formatDate(time) {
         time = time * 1000
         let date = new Date(time)
-        console.log(new Date(time))
+       // console.log(new Date(time))
         return formatDate(date, 'yyyy-MM-dd hh:mm')
       }
   }
