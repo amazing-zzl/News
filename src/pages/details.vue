@@ -27,7 +27,7 @@
             </div>
             <!-- 文章内容start -->
             <div class="article-body" role="article-body">
-              <p style="white-space: pre-wrap;">{{news.newsContent}}</p>
+              <p style="white-space: pre-wrap;" v-html="news.newsContent">{{news.newsContent}}</p>
             </div>
           </div>
           <!-- 文章内容end -->
