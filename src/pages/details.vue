@@ -27,7 +27,7 @@
             </div>
             <!-- 文章内容start -->
             <div class="article-body" role="article-body">
-              <p style="white-space: pre-wrap;">{{news.newsContent}}</p>
+              <p style="white-space: pre-wrap;" v-html="news.newsContent">{{news.newsContent}}</p>
             </div>
           </div>
           <!-- 文章内容end -->
@@ -64,7 +64,7 @@ export default {
       formatDate(time) {
         time = time * 1000
         let date = new Date(time)
-        console.log(new Date(time))
+        //console.log(new Date(time))
         return formatDate(date, 'yyyy-MM-dd hh:mm')
       }
   }
